@@ -1,0 +1,11 @@
+
+
+<div *ngIf="control.invalid" class="message" [ngStyle]="{'margin-left': textIndent,'font-size': fontSize}">
+  
+  <div *ngIf="control.errors.required">
+    * Molimo, upišite OIB kako biste dovršili zahtjev
+  </div>
+  <div *ngIf="control.errors.oibValid">
+    * Molimo, provjerite valjanost upisanog OIB-a
+  </div>
+</div>

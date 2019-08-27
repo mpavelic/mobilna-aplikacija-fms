@@ -6,6 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LogInPage } from './log-in.page';
+import { OibValidationMessageComponent } from '../components/Validation/oib-validation-message/oib-validation-message.component';
+import { EmailMessageComponent } from '../components/Validation/email-validation-message/email-validation-message.component';
+import { RequiredValidationMessageComponent } from '../components/Validation/required-validation-message/required-validation-message.component';
 
 const routes: Routes = [
   {
@@ -23,6 +26,6 @@ const routes: Routes = [
     ReactiveFormsModule
 
   ],
-  declarations: [LogInPage]
+  declarations: [LogInPage,OibValidationMessageComponent,EmailMessageComponent,RequiredValidationMessageComponent]
 })
 export class LogInPageModule {}
