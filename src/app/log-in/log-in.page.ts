@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { LogINService } from '../services/log-in.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { Helpers } from '../helpers/helpers';
 
 @Component({
   selector: 'app-log-in',
@@ -12,35 +13,47 @@ import { Router } from '@angular/router';
 export class LogInPage implements OnInit {
 
   logInForm = this.fb.group({
-    email: ['',[Validators.required,Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]],
-    password: ['',Validators.required],
+    email: ['', [Validators.required, Validators.pattern(Helpers.emailValidationPattern)]],
+    password: ['', Validators.required],
   });
+  incorectLogin = false;
+  instructionVisible = false;
+  constructor(private fb: FormBuilder, private loginService: LogINService, private router: Router) { }
 
-  constructor(private fb : FormBuilder, private loginService : LogINService, private router : Router) { }
+  logIn() {
 
-  logIn(){
-    this.loginService.logIn(new User(this.logInForm.controls.email.value,this.logInForm.controls.password.value)).then()
-    this.router.navigateByUrl('/options-page')
+    this.loginService.logIn(new User(this.logInForm.controls.email.value, this.logInForm.controls.password.value)).then(value => {
+      this.router.navigateByUrl('/options-page')
+
+    }, error => {
+      this.incorectLogin = true;
+
+    })
   }
 
   ngOnInit() {
+
   }
 
-  isFormValid(){
+  isFormValid() {
     return this.logInForm.valid;
   }
 
-  getValidationMessage(control : FormControl){
-    if(control.errors.required){
-      return 'Please enter a valid '
-    }
-    if(control.errors.pattern){
-      return 'Please enter a valid email adress'
-    }
+
+
+  openPage(url: string) {
+    this.router.navigateByUrl(url);
   }
 
 
-  getRequiredValidationMessage(control : FormControl){
-    return control.errors.required ? 'Please enter a valid email adress' : '';
+
+  resetPass(mail: string) {
+    if (!this.logInForm.controls.email.valid) {
+      this.instructionVisible = true;
+      return false;
+    }
+    this.loginService.resetPassword(this.logInForm.controls.email.value);
+    return;
   }
+
 }

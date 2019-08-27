@@ -1,9 +1,31 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>registration</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Register</ion-title>
+    </ion-toolbar>
 </ion-header>
+<ion-img src="/assets/images/homeImage.jpg"></ion-img>
 
 <ion-content>
+    <div class="form-container">
+        <form [formGroup]="registrationForm">
+            <ion-item>
+                <ion-input formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <email-validation-message [fontSize]="'14px'" [textIndent]="'20px'" [control]="registrationForm.controls['email']">
+            </email-validation-message>
+            <ion-item>
+
+                <ion-input formControlName="password" type="text"></ion-input>
+
+            </ion-item>
+            <required-validation-message [fontSize]="'14px'" [atributeName]="'password'" [textIndent]="'20px'" [control]="registrationForm.controls['password']"></required-validation-message>
+        </form>
+
+        <p *ngIf="incorectRegistration" class="login-message">Your email or password was incorrect. Please try again.</p>
+        <ion-button class="loginButton" expand="block" (click)="register()" [disabled]="!isFormValid()">REGISTER</ion-button>
+        <ion-button class="loginButton" expand="block" (click)="openPage('/')">HOME</ion-button>
+
+
+    </div>
 
 </ion-content>

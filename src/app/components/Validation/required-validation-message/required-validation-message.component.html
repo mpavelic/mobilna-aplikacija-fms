@@ -1,6 +1,5 @@
-
 <div *ngIf="control.invalid" class="message" [ngStyle]="{'margin-left': textIndent,'font-size': fontSize}">
-  <div *ngIf="control.errors.required">
-    * Molimo, upišite {{atributeName}} kako biste dovršili zahtjev
-  </div>
+    <div *ngIf="control.errors.required">
+        * Please, enter your {{atributeName}}.
+    </div>
 </div>

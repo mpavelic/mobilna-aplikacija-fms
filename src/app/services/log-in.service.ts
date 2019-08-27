@@ -8,8 +8,8 @@ import { User } from '../models/user';
 })
 export class LogINService {
 
-  constructor(private fireAuth: AngularFireAuth ) {
-    
+  constructor(private fireAuth: AngularFireAuth) {
+
   }
 
   async createAccount(user: User) {
@@ -18,18 +18,20 @@ export class LogINService {
 
   }
 
-  async logIn(user: User){
-    const tempUser = await this.fireAuth.auth.signInWithEmailAndPassword(user.mail, user.password);
-    console.log(tempUser);
+  async logIn(user: User) {
+    await this.fireAuth.auth.signInWithEmailAndPassword(user.mail, user.password);
   }
 
-  async logOut(user: User){
-    const tempUser = await this.fireAuth.auth.signOut();
-    console.log(tempUser);
+  async logOut(user: User) {
+    await this.fireAuth.auth.signOut();
   }
 
-  getCurrentUser(){
+  getCurrentUser() {
     console.log(this.fireAuth.auth.currentUser);
+  }
+
+  async resetPassword(mail: string) {
+    await this.fireAuth.auth.sendPasswordResetEmail(mail);
   }
 
 }
