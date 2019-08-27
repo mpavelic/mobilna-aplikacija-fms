@@ -20,6 +20,7 @@ export class LogInPage implements OnInit {
 
   logIn(){
     this.loginService.logIn(new User(this.logInForm.controls.email.value,this.logInForm.controls.password.value));
+    this.router.navigateByUrl('/options-page')
   }
 
   ngOnInit() {
