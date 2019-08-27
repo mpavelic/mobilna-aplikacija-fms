@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>logIn</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="logInForm">
+        <ion-item>
+            <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+
+            <ion-input formControlName="password" type="text"></ion-input>
+        </ion-item>
+
+    </form>
+    <ion-button expand="block" (click)="logIn()" [disabled]="!isFormValid()">LOGIN</ion-button>
+</ion-content>

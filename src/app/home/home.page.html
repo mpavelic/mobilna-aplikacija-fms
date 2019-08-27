@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Home
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-img src="/assets/images/homeImage.jpg"></ion-img>
+
+<ion-content>
+    <div class="ion-padding">
+        <h1 class="title">Welcome to FMS</h1>
+        <p class="subtitle">Your personal financial management system</p>
+
+    </div>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" (click)="openPage('/log-in')">LOGIN</ion-button>
+            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button expand="block" (click)="openPage('/registration')">REGISTER</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>
