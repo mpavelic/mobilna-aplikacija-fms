@@ -15,39 +15,56 @@ import { InfoModalComponent } from './info-modal/info-modal.component';
 export class RegistrationPage implements OnInit {
 
   registrationForm = this.fb.group({
-    email: ['', [Validators.required,Validators.pattern(Helpers.emailValidationPattern) ]],
+    email: ['', [Validators.required, Validators.pattern(Helpers.emailValidationPattern)]],
     password: ['', Validators.required],
   });
   incorectRegistration = false;
   instructionVisible = false;
-  constructor(private fb: FormBuilder, private loginService: LogINService,private modalController: ModalController, private router: Router) { }
+  formControls = this.registrationForm.controls;
+  constructor(private fb: FormBuilder, private loginService: LogINService, private modalController: ModalController, private router: Router) { }
 
   register() {
-    this.presentModal();
+    let tempUser = new User(this.formControls.email.value, this.formControls.password.value);
+    this.loginService.createAccount(tempUser);
+    this.loginService.logIn(tempUser);
+    this.loginService.sentVerivicationEmail().then(value => {
+      this.presentModal();
+
+    },
+      error => {
+        console.error(error);
+
+
+      });
   }
 
-  ngOnInit() {
- 
-  }
-
-  isFormValid() {
-    return this.registrationForm.valid;
-  }
 
 
-  openPage(url:string){
-    this.router.navigateByUrl(url);
-  }
+ngOnInit() {
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: InfoModalComponent,
-      componentProps: {
-        'email' : this.registrationForm.controls.email.value()
-      }
-    });
-    return await modal.present();
-  }
+}
+
+isFormValid() {
+  return this.registrationForm.valid;
+}
+
+
+openPage(url: string){
+  this.router.navigateByUrl(url);
+}
+
+async presentModal() {
+  const modal = await this.modalController.create({
+    component: InfoModalComponent,
+    componentProps: {
+      'email': this.formControls.email.value,
+    },
+    cssClass: 'info-modal'
+
+
+  });
+  return await modal.present();
+}
 
 
 }

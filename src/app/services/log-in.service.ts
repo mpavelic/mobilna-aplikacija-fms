@@ -13,21 +13,24 @@ export class LogINService {
   }
 
   async createAccount(user: User) {
-    const tempUser = await this.fireAuth.auth.createUserWithEmailAndPassword(user.mail, user.password);
-    console.log(tempUser);
+     return await this.fireAuth.auth.createUserWithEmailAndPassword(user.mail, user.password);
 
+  }
+
+   getCurrentUser(){
+    return  this.fireAuth.auth.currentUser
   }
 
   async logIn(user: User) {
     await this.fireAuth.auth.signInWithEmailAndPassword(user.mail, user.password);
   }
 
-  async logOut(user: User) {
+  async logOut() {
     await this.fireAuth.auth.signOut();
   }
 
-  getCurrentUser() {
-    console.log(this.fireAuth.auth.currentUser);
+  async sentVerivicationEmail(){
+    await this.getCurrentUser().sendEmailVerification();
   }
 
   async resetPassword(mail: string) {

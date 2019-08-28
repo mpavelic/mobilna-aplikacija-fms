@@ -4,6 +4,7 @@ import { LogINService } from '../services/log-in.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { Helpers } from '../helpers/helpers';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-log-in',
@@ -18,12 +19,19 @@ export class LogInPage implements OnInit {
   });
   incorectLogin = false;
   instructionVisible = false;
+  showVerifyMessage = false;
   constructor(private fb: FormBuilder, private loginService: LogINService, private router: Router) { }
 
   logIn() {
 
     this.loginService.logIn(new User(this.logInForm.controls.email.value, this.logInForm.controls.password.value)).then(value => {
-      this.router.navigateByUrl('/options-page')
+      let user = this.loginService.getCurrentUser();
+      if(user.emailVerified){
+        this.router.navigateByUrl('/options-page')
+      }
+      if(!user.emailVerified){
+        this.showVerifyMessage = true;
+      }
 
     }, error => {
       this.incorectLogin = true;

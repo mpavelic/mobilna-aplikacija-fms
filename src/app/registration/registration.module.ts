@@ -6,7 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { RegistrationPage } from './registration.page';
-import { EmailMessageComponent } from '../components/Validation/email-validation-message/email-validation-message.component';
+import { SharedModule } from '../shared/shared.module';
+import { InfoModalComponent } from './info-modal/info-modal.component';
 
 
 const routes: Routes = [
@@ -17,13 +18,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  entryComponents: [InfoModalComponent],
+
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RegistrationPage,EmailMessageComponent]
+  
+  declarations: [RegistrationPage,InfoModalComponent]
 })
 export class RegistrationPageModule {}

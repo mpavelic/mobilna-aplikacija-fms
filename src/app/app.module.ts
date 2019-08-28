@@ -17,13 +17,11 @@ import { OibValidationMessageComponent } from './components/Validation/oib-valid
 import { RequiredValidationMessageComponent } from './components/Validation/required-validation-message/required-validation-message.component';
 import { RegistrationPageModule } from './registration/registration.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OibValidationMessageComponent,
-    RequiredValidationMessageComponent,
-    EmailMessageComponent
+    AppComponent
   ],
   entryComponents: [],
   imports: [
@@ -34,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireAuthModule,
     AngularFirestoreModule,
     RegistrationPageModule,
-    LogInPageModule
+    LogInPageModule,
+    SharedModule
     
   ],
   providers: [
@@ -43,7 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
-  exports: [OibValidationMessageComponent,RequiredValidationMessageComponent,EmailMessageComponent]
+  exports: []
 
 })
 export class AppModule { }

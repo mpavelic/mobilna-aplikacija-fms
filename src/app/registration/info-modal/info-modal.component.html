@@ -1,3 +1,16 @@
-<p>
-    info-modal works!
-</p>
+<ion-content>
+    <div class="message-wrapper">
+
+        <p class="info-message">
+            A verification link has been sent to <span class="blue-letters">{{email}}</span>.
+        </p>
+
+        <p class="info-message">
+            <span class="blue-letters">Please verify your email address.</span> Thank you for using our apliaction.
+        </p>
+    </div>
+    <div class="button-wrapper">
+        <ion-button class="loginButton" size="small" (click)="closeModal('/')">HOME</ion-button>
+
+    </div>
+</ion-content>

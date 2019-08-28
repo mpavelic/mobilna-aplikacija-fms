@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NavParams } from '@ionic/angular';
+import { NavParams, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { url } from 'inspector';
 
 @Component({
   selector: 'app-info-modal',
@@ -8,12 +10,16 @@ import { NavParams } from '@ionic/angular';
 })
 export class InfoModalComponent implements OnInit {
 
-  constructor(private navParams: NavParams) { }
+  @Input() email: string;
+  constructor(private modalCtrl : ModalController, private router : Router) { }
 
   ngOnInit() {
-    console.log(this.navParams.get('email'));
-
   }
-  @Input() email: string;
+
+  closeModal(redirectUrl : string){
+    this.modalCtrl.dismiss().then(value => {
+      this.router.navigateByUrl(redirectUrl);
+    })
+  }
 
 }
