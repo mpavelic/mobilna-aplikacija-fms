@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { url } from 'inspector';
 
 @Component({
   selector: 'app-info-modal',

@@ -4,7 +4,6 @@ import { LogINService } from '../services/log-in.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { Helpers } from '../helpers/helpers';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-log-in',

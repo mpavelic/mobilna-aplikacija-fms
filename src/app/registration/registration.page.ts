@@ -24,18 +24,9 @@ export class RegistrationPage implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LogINService, private modalController: ModalController, private router: Router) { }
 
   register() {
-    let tempUser = new User(this.formControls.email.value, this.formControls.password.value);
-    this.loginService.createAccount(tempUser);
-    this.loginService.logIn(tempUser);
-    this.loginService.sentVerivicationEmail().then(value => {
+   this.loginService.CreateUserWithVerification(this.formControls.email.value,this.formControls.password.value).then(()=>{
       this.presentModal();
-
-    },
-      error => {
-        console.error(error);
-
-
-      });
+   })
   }
 
 
