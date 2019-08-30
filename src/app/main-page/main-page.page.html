@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Main</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-img src="/assets/images/homeImage.jpg"></ion-img>
+
+<ion-content>
+    <ion-grid class="grid">
+        <ion-row>
+            <ion-col size="6" *ngFor="let item of mainPageItems">
+                <ion-card class="card" (click)="openPage(item.routerLink)">
+                    <ion-card-header class="header">
+                        <ion-icon [name]="item.icon"></ion-icon>
+                    </ion-card-header>
+                    <ion-card-content class="content">
+                        {{item.title}}
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { LogINService } from '../services/log-in.service';
 import { User } from '../models/user';
@@ -11,11 +11,16 @@ import { Router } from '@angular/router';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
-  constructor( private router : Router) {
+export class HomePage implements OnInit{
+  constructor( private router : Router, private loginService : LogINService) {
 
   }
   
+  ngOnInit(){
+    if(this.loginService.getCurrentUser()){
+      this.router.navigateByUrl("main-page");
+    }
+  }
   
   openPage(url : string){
     this.router.navigateByUrl(url);

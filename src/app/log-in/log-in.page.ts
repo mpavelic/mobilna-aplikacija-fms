@@ -4,6 +4,7 @@ import { LogINService } from '../services/log-in.service';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
 import { Helpers } from '../helpers/helpers';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-log-in',
@@ -22,11 +23,12 @@ export class LogInPage implements OnInit {
   constructor(private fb: FormBuilder, private loginService: LogINService, private router: Router) { }
 
   logIn() {
-
+ 
+   
     this.loginService.logIn(new User(this.logInForm.controls.email.value, this.logInForm.controls.password.value)).then(value => {
       let user = this.loginService.getCurrentUser();
       if(user.emailVerified){
-        this.router.navigateByUrl('/options-page')
+        this.router.navigateByUrl('/main-page')
       }
       if(!user.emailVerified){
         this.showVerifyMessage = true;
@@ -40,6 +42,8 @@ export class LogInPage implements OnInit {
 
   ngOnInit() {
 
+      this.logInForm.controls.email.setValue("matej.pavelic@gmail.com")
+      this.logInForm.controls.password.setValue("ludjak0402");
   }
 
   isFormValid() {
