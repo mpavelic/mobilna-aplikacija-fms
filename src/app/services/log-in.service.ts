@@ -17,6 +17,11 @@ export class LogINService {
 
   }
 
+  async getUserToken(){
+    let uuid = '';
+    return this.getCurrentUser().getIdToken();
+  }
+
   getCurrentUser() {
     return this.fireAuth.auth.currentUser
   }

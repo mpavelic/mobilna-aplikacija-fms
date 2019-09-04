@@ -18,7 +18,7 @@
                 <ion-input formControlName="password" type="password"></ion-input>
 
             </ion-item>
-            <required-validation-message [fontSize]="'14px'" [atributeName]="'password'" [textIndent]="'20px'" [control]="logInForm.controls['password']"></required-validation-message>
+            <required-validation-message [fontSize]="'14px'" [atributeName]="'your password'" [textIndent]="'20px'" [control]="logInForm.controls['password']"></required-validation-message>
         </form>
 
         <p *ngIf="incorectLogin" class="login-message">Your email or password was incorrect. Please try again.</p>

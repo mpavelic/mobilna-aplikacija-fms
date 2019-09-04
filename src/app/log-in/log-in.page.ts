@@ -42,8 +42,8 @@ export class LogInPage implements OnInit {
 
   ngOnInit() {
 
-      // this.logInForm.controls.email.setValue("matej.pavelic@gmail.com")
-      // this.logInForm.controls.password.setValue("ludjak0402");
+      this.logInForm.controls.email.setValue("matej.pavelic@gmail.com")
+      this.logInForm.controls.password.setValue("ludjak0402");
   }
 
   isFormValid() {

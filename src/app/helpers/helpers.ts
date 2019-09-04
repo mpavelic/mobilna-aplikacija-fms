@@ -1,6 +1,6 @@
 export class Helpers {
     public static readonly emailValidationPattern = '^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
-
+    public static readonly dateValidationPattern = '^[0-3]?[0-9]\/[01]?[0-9]\/[12][90][0-9][0-9]$'
     // public static concatStrings(text: Array<string>) {
     //     let finalText = '';
     //     text.forEach(element => {
