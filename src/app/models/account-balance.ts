@@ -1,8 +1,8 @@
 export class AccountBalance{
-    private date : Date;
-    private expenses : number;
-    private revenues : number;
-    private saldo : number;
+     date : Date;
+     expenses : number;
+     revenues : number;
+     saldo : number;
 
     constructor(date : Date, expenses : number, revenues : number){
         this.date = date;

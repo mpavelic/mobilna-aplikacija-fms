@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../services/crud.service';
+import { Expense } from '../models/expense';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-expenses-list',
@@ -8,13 +10,26 @@ import { CrudService } from '../services/crud.service';
 })
 export class ExpensesListPage implements OnInit {
 
-  constructor(private crudServise : CrudService) { }
-
+  constructor(private crudServise: CrudService, private loadingController: LoadingController) { }
+  listOfExpenses: Array<Expense> = [];
+  loadingData = true;
   ngOnInit() {
-    this.crudServise.getFromDatabase("expenses-list").then(value =>{
-      console.log(value);
-      
-    })
+    this.crudServise.getFromDatabase("expenses").then(value => {
+
+      this.listOfExpenses = value;
+      this.loadingData = false;
+    },
+      error => {
+        console.log(error);
+
+      }
+    );
+
+
   }
 
+
+
 }
+
+

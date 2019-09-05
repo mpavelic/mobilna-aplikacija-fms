@@ -1,9 +1,24 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>expensesList</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>expensesList</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid style="height: 100%" *ngIf="loadingData">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <app-loader></app-loader>
+        </ion-row>
+    </ion-grid>
+    <div class="content" *ngIf="!loadingData">
+        <h1 class="title">Your expenses : </h1>
+        <ion-list>
+            <ion-item *ngFor="let expense of listOfExpenses">
+                <ion-label>{{expense.name}}</ion-label>
+                <ion-label>{{expense.category}}</ion-label>
+            </ion-item>
+
+        </ion-list>
+    </div>
 
 </ion-content>

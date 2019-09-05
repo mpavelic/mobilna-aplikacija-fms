@@ -1,8 +1,8 @@
 export class Expense {
-    private name: string;
-    private category: string;
-    private date: Date;
-    private amount: number;
+     name: string;
+     category: string;
+     date: Date;
+     amount: number;
 
 
 

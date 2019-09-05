@@ -13,7 +13,7 @@ export class MainPagePage implements OnInit {
 
   mainPageItems = [
     { "icon": "cart", "routerLink": "/expenses", "title": "Expenses"},
-    { "icon": "card", "routerLink": "/expenses", "title": "Revenues"},
+    { "icon": "card", "routerLink": "/expenses-list", "title": "Revenues"},
     { "icon": "calendar", "routerLink": "/expenses", "title": "Account Balance"},
     { "icon": "calculator", "routerLink": "/expenses", "title": "Currency Converter"},
 
