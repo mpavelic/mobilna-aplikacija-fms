@@ -7,13 +7,12 @@ export class TypeOfExpenseService {
 
   constructor() { }
 
-  getTypeOfExpenses(){
+  getTypeOfExpenses() {
     return [
-       'Weekly expense',
-       "Dayli expense",
-       "Monthly expense",
-       "Monthly expense",
-        "Anual expense"
+      'Weekly expense',
+      "Dayli expense",
+      "Monthly expense",
+      "Anual expense"
     ]
-}
+  }
 }
