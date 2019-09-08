@@ -13,6 +13,7 @@ import { CrudService } from '../services/crud.service';
 import { InfoModalComponent } from '../registration/info-modal/info-modal.component';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TypeOfExpenseService } from '../services/type-of-expense.service';
 
 @Component({
   selector: 'app-expenses',
@@ -27,34 +28,38 @@ export class ExpensesPage implements OnInit {
     private loginService: LogINService,
     private fb: FormBuilder,
     private categoryService: CategoryService,
-    private crudService : CrudService,
-    private modalController : ModalController,
-    private router : Router
+    private crudService: CrudService,
+    private modalController: ModalController,
+    private router: Router,
+    private typeOfExpense : TypeOfExpenseService
   ) { }
   expense: Expense;
   revenue: Revenue;
   accountBalance: AccountBalance;
-  selectedCategory : category;
+  selectedCategory: category;
   listOfCategories: Array<category>;
+  typeOfExpenseArray : Array<string>;
+  calendarVisibe : boolean = false;
   expenseForm = this.fb.group({
     name: ['', Validators.required],
     category: ['', Validators.required],
+    typeOfExpense : ['',Validators.required],
     date: ['', Validators.required],
     amount: ['', Validators.required]
   });
 
 
-  
+
 
   ngOnInit() {
-    this.expense = new Expense("Food", "Dayli expenses", new Date(), 1200);
-    this.revenue = new Revenue("Food", "Dayli expenses", new Date(), 600);
-    this.accountBalance = new AccountBalance(new Date(), this.expense.getAmount(), this.revenue.getAmount());
-    this.listOfCategories = this.categoryService.getListOfDefaultCategories();
-    
-    console.log(this.accountBalance.getSaldo());
 
-    
+
+    this.listOfCategories = this.categoryService.getListOfDefaultCategories();
+    this.typeOfExpenseArray = this.typeOfExpense.getTypeOfExpenses();
+
+    this.expenseForm.controls.typeOfExpense.valueChanges.subscribe(value =>{
+      this.calendarVisibe = true;
+    })
 
 
 
@@ -67,39 +72,42 @@ export class ExpensesPage implements OnInit {
   }
 
 
-  setIonSelectedValue(category : category){
+  setIonSelectedValue(category: category) {
     this.selectedCategory = category;
   }
 
-  getIonSelectedValue(){
-    if(!this.selectedCategory){
+  getIonSelectedValue() {
+    if (!this.selectedCategory) {
       return this.listOfCategories[0].name;
     }
     return this.selectedCategory.name;
   }
 
-  isFormValid(){
+  isFormValid() {
     return this.expenseForm.valid;
   }
-  storeToDatabase(){
+  storeToDatabase() {
     // this.expenseForm.controls.category.setValue(this.selectedCategory);
-    this.crudService.addToDatabase("expenses",this.expenseForm.value).then(value=>{
+    this.crudService.addToDatabase("expenses", { ...this.expenseForm.value, ...{ 'uuid': this.loginService.getUserId() } }).then(value => {
       this.router.navigateByUrl("/expenses-list")
     })
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: InfoModalComponent,
-      componentProps: {
-        'email': this.expenseForm.controls.name.value
-      },
-      cssClass: 'info-modal'
-  
-  
-    });
-    return await modal.present();
-  }
-  
+
+
+
+  // async presentModal() {
+  //   const modal = await this.modalController.create({
+  //     component: InfoModalComponent,
+  //     componentProps: {
+  //       'email': this.expenseForm.controls.name.value
+  //     },
+  //     cssClass: 'info-modal'
+
+
+  //   });
+  //   return await modal.present();
+  // }
+
 }
 

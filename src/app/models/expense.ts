@@ -1,20 +1,23 @@
 export class Expense {
-     name: string;
-     category: string;
-     date: Date;
-     amount: number;
+    expenseID : string;
+    name: string;
+    category: string;
+    date: Date;
+    typeOfExpense : string;
+    amount: number;
 
 
-
-    constructor(name: string, category: string, date: Date, amount: number) {
+    constructor(expenseID: string,name: string, category: string, date: Date, typeOfExpense : string,amount: number) {
         this.name = name;
         this.category = category;
         this.date = date;
         this.amount = amount;
+        this.typeOfExpense = typeOfExpense;
+        this.expenseID = expenseID;
     }
 
 
-    getAmount(){
+    getAmount() {
         return this.amount;
     }
 

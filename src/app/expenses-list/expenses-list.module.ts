@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ExpensesListPage } from './expenses-list.page';
 import { SharedModule } from '../shared/shared.module';
+import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  entryComponents: [ExpensesDetailComponent],
+
   imports: [
     CommonModule,
     FormsModule,
@@ -23,6 +26,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [ExpensesListPage]
+  declarations: [ExpensesListPage,ExpensesDetailComponent]
 })
 export class ExpensesListPageModule {}

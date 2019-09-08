@@ -1,6 +1,16 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>expensesList</ion-title>
+        <ion-title>Expenses</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+
+            <ion-button (click)="openPage('/new-expense')">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -12,10 +22,11 @@
     </ion-grid>
     <div class="content" *ngIf="!loadingData">
         <h1 class="title">Your expenses : </h1>
+
         <ion-list>
-            <ion-item *ngFor="let expense of listOfExpenses">
+            <ion-item *ngFor="let expense of listOfExpenses" (click)="presentModal(expense)">
                 <ion-label>{{expense.name}}</ion-label>
-                <ion-label>{{expense.category}}</ion-label>
+                <ion-label>{{expense.typeOfExpense}}</ion-label>
             </ion-item>
 
         </ion-list>

@@ -17,9 +17,10 @@ export class LogINService {
 
   }
 
-  async getUserToken(){
-    let uuid = '';
-    return this.getCurrentUser().getIdToken();
+
+  getUserId(){
+    return this.getCurrentUser().uid;
+    
   }
 
   getCurrentUser() {

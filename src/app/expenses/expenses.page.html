@@ -1,7 +1,11 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>expenses</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
     </ion-toolbar>
+
 </ion-header>
 <ion-img src="/assets/images/homeImage.jpg"></ion-img>
 <ion-content>
@@ -29,7 +33,20 @@
                 </ion-item>
             </div>
 
+
             <div class="item-padding">
+
+                <ion-item>
+                    <ion-label>Type of Expense:</ion-label>
+                    <ion-select formControlName="typeOfExpense" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option *ngFor="let item of typeOfExpenseArray" (click)="setIonSelectedValue(item)">{{item}}
+                        </ion-select-option>
+
+                    </ion-select>
+                </ion-item>
+            </div>
+
+            <div class="item-padding" *ngIf="calendarVisibe">
 
                 <ion-item>
                     <ion-label>Date:</ion-label>

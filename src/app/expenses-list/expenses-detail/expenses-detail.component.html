@@ -1,0 +1,30 @@
+<ion-content>
+    <ion-grid>
+        <ion-row class="row-align">
+            <ion-col>Expense name:</ion-col>
+            <ion-col>{{expense.name}}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Expense category:</ion-col>
+            <ion-col>{{expense.category}}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Type of Expense:</ion-col>
+            <ion-col>{{expense.typeOfExpense}}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Date:</ion-col>
+            <ion-col displayFormat="MM DD YY">{{expense.date | date }}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Amount:</ion-col>
+            <ion-col>{{expense.amount}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button class="deleteExpense" color="danger" expand="block" (click)="delete()">Delete
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
