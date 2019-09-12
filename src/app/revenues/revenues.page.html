@@ -1,0 +1,78 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Revenues</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+
+</ion-header>
+<ion-img src="/assets/images/homeImage.jpg"></ion-img>
+<ion-content>
+    <div class="form-container">
+
+        <form [formGroup]="revenueForm">
+            <div class="item-padding">
+
+                <ion-item>
+                    <ion-label>Name:</ion-label>
+
+                    <ion-input formControlName="name" type="text"></ion-input>
+                </ion-item>
+                <required-validation-message [fontSize]="'14px'" [atributeName]="'name'" [textIndent]="'20px'" [control]="revenueForm.controls['name']"></required-validation-message>
+            </div>
+            <div class="item-padding">
+
+                <ion-item>
+                    <ion-label>Category:</ion-label>
+                    <ion-select formControlName="category" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option *ngFor="let item of listOfCategories">{{item.name}}
+                        </ion-select-option>
+
+                    </ion-select>
+                </ion-item>
+                <required-validation-message [fontSize]="'14px'" [atributeName]="'category'" [textIndent]="'20px'" [control]="revenueForm.controls['category']"></required-validation-message>
+
+            </div>
+
+
+            <div class="item-padding">
+
+                <ion-item>
+                    <ion-label>Type of revenue:</ion-label>
+                    <ion-select formControlName="typeOfRevenue" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option *ngFor="let item of typeOfRevenueArray">{{item}}</ion-select-option>
+
+                    </ion-select>
+                </ion-item>
+                <required-validation-message [fontSize]="'14px'" [atributeName]="'type of revenue'" [textIndent]="'20px'" [control]="revenueForm.controls['typeOfRevenue']"></required-validation-message>
+            </div>
+
+            <div class="item-padding" *ngIf="calendarVisibe">
+
+                <ion-item>
+                    <ion-label>{{dateText}}</ion-label>
+                    <ion-datetime formControlName="date" displayFormat="MM DD YY" placeholder="Select Date">
+                    </ion-datetime>
+                </ion-item>
+            </div>
+            <div class="item-padding">
+
+                <ion-item>
+                    <ion-label>Amount:</ion-label>
+
+                    <ion-input formControlName="amount" type="number"></ion-input>
+                </ion-item>
+                <required-validation-message [fontSize]="'14px'" [atributeName]="'amount'" [textIndent]="'20px'" [control]="revenueForm.controls['amount']"></required-validation-message>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="margina">
+        <ion-button class="loginButton" expand="block" [disabled]="!isFormValid()" (click)="storeToDatabase()">SUBMIT
+        </ion-button>
+
+    </div>
+
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Revenues</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+
+        <ion-buttons slot="primary">
+
+            <ion-button (click)="openPage('/new-revenue')">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid style="height: 100%" *ngIf="loadingData">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <app-loader></app-loader>
+        </ion-row>
+    </ion-grid>
+    <div class="content" *ngIf="!loadingData">
+        <h1 class="title">Your Revenues : </h1>
+
+        <ion-list>
+            <ion-item *ngFor="let revenue of listOfRevenues" (click)="presentModal(revenue)">
+                <ion-label>{{revenue.name}}</ion-label>
+                <ion-label>{{revenue.typeOfRevenue}}</ion-label>
+            </ion-item>
+
+        </ion-list>
+    </div>
+
+</ion-content>

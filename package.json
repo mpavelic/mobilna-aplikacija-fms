@@ -11,7 +11,10 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "lab": "ionic serve --lab",
-        "android-build": "ionic cordova run android --device"
+        "android-build": "ionic cordova run android --device",
+        "compodoc": "compodoc",
+        "generate-docs": "compodoc -p ./tsconfig.app.json",
+        "serve-docs": "compodoc -s ./tsconfig.app.json"
     },
     "private": true,
     "dependencies": {
@@ -51,6 +54,7 @@
         "@angular/compiler": "~8.1.2",
         "@angular/compiler-cli": "~8.1.2",
         "@angular/language-service": "~8.1.2",
+        "@compodoc/compodoc": "^1.1.10",
         "@ionic/angular-toolkit": "~2.0.0",
         "@ionic/lab": "2.0.9",
         "@types/jasmine": "~3.3.8",

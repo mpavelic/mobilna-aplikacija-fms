@@ -1,0 +1,30 @@
+<ion-content>
+    <ion-grid>
+        <ion-row class="row-align">
+            <ion-col>Revenue name:</ion-col>
+            <ion-col>{{revenue.name}}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Revenue category:</ion-col>
+            <ion-col>{{revenue.category}}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Type of Revenue:</ion-col>
+            <ion-col>{{revenue.typeOfRevenue}}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>{{dateText}}:</ion-col>
+            <ion-col displayFormat="MM DD YY">{{revenue.date | date }}</ion-col>
+        </ion-row>
+        <ion-row class="row-align">
+            <ion-col>Amount:</ion-col>
+            <ion-col>{{revenue.amount}}</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-button class="deleteRevenue" color="danger" expand="block" (click)="delete()">Delete
+                </ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

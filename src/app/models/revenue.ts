@@ -1,14 +1,19 @@
 export class Revenue{
-     name : string;
-     category : string;
-     date : Date;
-     amount : number;
+    revenueID : string;
+    name: string;
+    category: string;
+    date: Date;
+    typeOfRevenue : string;
+    amount: number;
 
-    constructor(name: string, category : string, date : Date, amount : number){
+
+    constructor(revenueID: string,name: string, category: string, date: Date, typeOfRevenue : string,amount: number) {
         this.name = name;
         this.category = category;
         this.date = date;
         this.amount = amount;
+        this.typeOfRevenue = typeOfRevenue;
+        this.revenueID = revenueID;
     }
 
 
