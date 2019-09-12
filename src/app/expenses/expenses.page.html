@@ -26,11 +26,13 @@
                 <ion-item>
                     <ion-label>Category:</ion-label>
                     <ion-select formControlName="category" okText="Okay" cancelText="Dismiss">
-                        <ion-select-option *ngFor="let item of listOfCategories" (click)="setIonSelectedValue(item)">{{item.name}}
+                        <ion-select-option *ngFor="let item of listOfCategories">{{item.name}}
                         </ion-select-option>
 
                     </ion-select>
                 </ion-item>
+                <required-validation-message [fontSize]="'14px'" [atributeName]="'category'" [textIndent]="'20px'" [control]="expenseForm.controls['category']"></required-validation-message>
+
             </div>
 
 
@@ -39,18 +41,19 @@
                 <ion-item>
                     <ion-label>Type of Expense:</ion-label>
                     <ion-select formControlName="typeOfExpense" okText="Okay" cancelText="Dismiss">
-                        <ion-select-option *ngFor="let item of typeOfExpenseArray" (click)="setIonSelectedValue(item)">{{item}}
-                        </ion-select-option>
+                        <ion-select-option *ngFor="let item of typeOfExpenseArray">{{item}}</ion-select-option>
 
                     </ion-select>
                 </ion-item>
+                <required-validation-message [fontSize]="'14px'" [atributeName]="'type of expense'" [textIndent]="'20px'" [control]="expenseForm.controls['typeOfExpense']"></required-validation-message>
             </div>
 
             <div class="item-padding" *ngIf="calendarVisibe">
 
                 <ion-item>
-                    <ion-label>Date:</ion-label>
-                    <ion-datetime formControlName="date" displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
+                    <ion-label>{{dateText}}</ion-label>
+                    <ion-datetime formControlName="date" displayFormat="MM DD YY" placeholder="Select Date">
+                    </ion-datetime>
                 </ion-item>
             </div>
             <div class="item-padding">

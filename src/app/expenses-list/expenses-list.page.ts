@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudService } from '../services/crud.service';
 import { Expense } from '../models/expense';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LogINService } from '../services/log-in.service';
 import { ExpensesDetailComponent } from './expenses-detail/expenses-detail.component';
+import { ExpensesService } from '../services/expenses.service';
+import { CrudService } from '../services/crud.service';
 
 @Component({
   selector: 'app-expenses-list',
@@ -18,7 +19,8 @@ export class ExpensesListPage implements OnInit {
     private loadingController: LoadingController,
     private loginService: LogINService, 
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private expenseService : ExpensesService
     ) { }
   listOfExpenses: Array<Expense> = [];
   loadingData = true;
@@ -35,7 +37,7 @@ export class ExpensesListPage implements OnInit {
   }
 
   loadData(){
-    this.crudServise.getFromDatabaseForLogedInUser("expenses", this.loginService.getUserId()).subscribe(value => {
+    this.expenseService.getExpenses( this.loginService.getUserId()).subscribe(value => {
 
       this.listOfExpenses = value;
       this.loadingData = false;

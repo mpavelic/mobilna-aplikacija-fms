@@ -1,19 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { LogINService } from '../services/log-in.service';
 import { Expense } from '../models/expense';
 import { Revenue } from '../models/revenue';
 import { AccountBalance } from '../models/account-balance';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Helpers } from '../helpers/helpers';
-import { CategoryService } from '../services/category.service';
 import { category } from '../interfaces/categoryInterface';
-import { CrudService } from '../services/crud.service';
-import { InfoModalComponent } from '../registration/info-modal/info-modal.component';
-import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { TypeOfExpenseService } from '../services/type-of-expense.service';
+import { CrudService } from '../services/crud.service';
+import { ExpensesService } from '../services/expenses.service';
 
 @Component({
   selector: 'app-expenses',
@@ -24,14 +18,12 @@ import { TypeOfExpenseService } from '../services/type-of-expense.service';
 
 export class ExpensesPage implements OnInit {
 
-  constructor(private firestore: AngularFirestore,
+  constructor(
     private loginService: LogINService,
     private fb: FormBuilder,
-    private categoryService: CategoryService,
     private crudService: CrudService,
-    private modalController: ModalController,
     private router: Router,
-    private typeOfExpense : TypeOfExpenseService
+    private expenseService : ExpensesService
   ) { }
   expense: Expense;
   revenue: Revenue;
@@ -40,6 +32,7 @@ export class ExpensesPage implements OnInit {
   listOfCategories: Array<category>;
   typeOfExpenseArray : Array<string>;
   calendarVisibe : boolean = false;
+  dateText : string = '';
   expenseForm = this.fb.group({
     name: ['', Validators.required],
     category: ['', Validators.required],
@@ -54,34 +47,31 @@ export class ExpensesPage implements OnInit {
   ngOnInit() {
 
 
-    this.listOfCategories = this.categoryService.getListOfDefaultCategories();
-    this.typeOfExpenseArray = this.typeOfExpense.getTypeOfExpenses();
+    this.listOfCategories = this.expenseService.getListOfDefaultCategories();
+    this.typeOfExpenseArray = this.expenseService.getTypeOfExpenses();
 
     this.expenseForm.controls.typeOfExpense.valueChanges.subscribe(value =>{
       this.calendarVisibe = true;
+      this.setDateText(value);
+        
+      
     })
 
-
-
-    // this.firestore.collection("expenses").add(object).then(value =>{
-    //   console.log(value);
-
-    // },
+ 
 
 
   }
 
-
-  setIonSelectedValue(category: category) {
-    this.selectedCategory = category;
+  setDateText(value: string){
+        if(value === 'Daily expense'){
+          this.dateText = "Date end";
+          return;
+        }
+        this.dateText = "Date";
+        return;
   }
 
-  getIonSelectedValue() {
-    if (!this.selectedCategory) {
-      return this.listOfCategories[0].name;
-    }
-    return this.selectedCategory.name;
-  }
+
 
   isFormValid() {
     return this.expenseForm.valid;
