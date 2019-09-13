@@ -17,9 +17,7 @@ export class HomePage implements OnInit{
   }
   
   ngOnInit(){
-    if(this.loginService.getCurrentUser()){
-      this.router.navigateByUrl("main-page");
-    }
+
   }
   
   openPage(url : string){

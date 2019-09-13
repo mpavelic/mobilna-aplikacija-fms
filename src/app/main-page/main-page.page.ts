@@ -15,7 +15,7 @@ export class MainPagePage implements OnInit {
     { "icon": "cart", "routerLink": "/expenses-list", "title": "Expenses"},
     { "icon": "card", "routerLink": "/revenues-list", "title": "Revenues"},
     { "icon": "calendar", "routerLink": "/expenses", "title": "Account Balance"},
-    { "icon": "calculator", "routerLink": "/expenses", "title": "Currency Converter"},
+    { "icon": "calculator", "routerLink": "/currency-converter", "title": "Currency Converter"},
 
 
   ]

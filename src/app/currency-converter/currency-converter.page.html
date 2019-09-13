@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Currency converter</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-img src="/assets/images/homeImage.jpg"></ion-img>
+
+<ion-content>
+    <ion-grid style="height: 100%" *ngIf="loadingData || loadingWantedData">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <app-loader></app-loader>
+        </ion-row>
+    </ion-grid>
+    <form class="form" [formGroup]="currencyForm" *ngIf="!loadingData || !loadingWantedData">
+        <ion-item>
+            <ion-label>Currency I have:</ion-label>
+            <ion-select formControlName="currentCurrency" okText="Okay" cancelText="Dismiss">
+                <ion-select-option *ngFor="let item of listOfCurrency">{{item}}</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Amount:</ion-label>
+
+            <ion-input formControlName="currentCurrencyValue" type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Currency I want:</ion-label>
+            <ion-select formControlName="wantedCurrency" okText="Okay" cancelText="Dismiss">
+                <ion-select-option *ngFor="let item of listOfWantedCurrency">{{item}}</ion-select-option>
+
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Wanted currency value :{{result}}</ion-label>
+
+        </ion-item>
+    </form>
+    <!-- <form [formGroup]="expenseForm">
+
+
+        <div class="item-padding">
+
+            <ion-item>
+                <ion-label>Type of Expense:</ion-label>
+                <ion-select formControlName="typeOfExpense" okText="Okay" cancelText="Dismiss">
+                    <ion-select-option *ngFor="let item of typeOfExpenseArray">{{item}}</ion-select-option>
+
+                </ion-select>
+            </ion-item>
+            <required-validation-message [fontSize]="'14px'" [atributeName]="'type of expense'" [textIndent]="'20px'" [control]="expenseForm.controls['typeOfExpense']"></required-validation-message>
+        </div>
+
+        <div class="item-padding">
+
+            <ion-item>
+                <ion-label>Amount:</ion-label>
+
+                <ion-input formControlName="amount" type="number"></ion-input>
+            </ion-item>
+            <required-validation-message [fontSize]="'14px'" [atributeName]="'amount'" [textIndent]="'20px'" [control]="expenseForm.controls['amount']"></required-validation-message>
+        </div>
+
+    </form> -->
+</ion-content>
