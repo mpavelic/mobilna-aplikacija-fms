@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Account balance</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-img *ngIf="!loadingRevenues && !loadingExpenses" src="/assets/images/homeImage.jpg"></ion-img>
+
+<ion-content class="item-padding">
+    <ion-grid style="height: 100%" *ngIf="loadingRevenues && loadingExpenses">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <app-loader></app-loader>
+        </ion-row>
+    </ion-grid>
+    <div class="container" *ngIf="!loadingRevenues && !loadingExpenses">
+        <p class="title">Please select a date for which you want account balance</p>
+
+        <form [formGroup]="accountBalanceForm">
+
+            <div class="item-margin">
+
+                <ion-item>
+                    <ion-label>Date: </ion-label>
+                    <ion-datetime formControlName="date" displayFormat="MM DD YY" placeholder="Select Date">
+                    </ion-datetime>
+                </ion-item>
+            </div>
+        </form>
+
+        <p class="result" [ngClass]="resultColor" displayFormat="MM DD YY" *ngIf="showBalance"> ACCOUNT BALANCE : {{accountBalance}}</p>
+
+    </div>
+
+</ion-content>

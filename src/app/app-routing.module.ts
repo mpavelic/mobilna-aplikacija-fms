@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: 'new-expense', loadChildren: './expenses/expenses.module#ExpensesPageModule' },
   { path: 'expenses-list', loadChildren: './expenses-list/expenses-list.module#ExpensesListPageModule' },
   { path: 'new-revenue', loadChildren: './revenues/revenues.module#RevenuesPageModule' },
-  { path: 'revenues-list', loadChildren: './revenues-list/revenues-list.module#RevenuesListPageModule' },  { path: 'currency-converter', loadChildren: './currency-converter/currency-converter.module#CurrencyConverterPageModule' }
+  { path: 'revenues-list', loadChildren: './revenues-list/revenues-list.module#RevenuesListPageModule' },
+  { path: 'currency-converter', loadChildren: './currency-converter/currency-converter.module#CurrencyConverterPageModule' },
+  { path: 'account-balance', loadChildren: './account-balance/account-balance.module#AccountBalancePageModule' }
 
 
 ];
